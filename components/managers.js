@@ -65,7 +65,7 @@ function begin(el) {
   el.setAttribute('animation__position', 'property: position; from: 0 0 0; to: 0 0 -8; dur: 1000; easing: linear');
   el.emit('togglehide');
   // No cursor for road
-  document.querySelector('#cursor').setAttribute("visible", false);
+  //document.querySelector('#cursor').setAttribute("visible", false);
   // Tell sliding elements to stop
   emitToClass(el, 'slide', 'speed', '0');
   // Tell camera to start
@@ -82,7 +82,7 @@ function main(el) {
   var toggle = document.querySelector('#toggle');
   toggle.setAttribute('visible', true);
   
-  document.querySelector('#cursor').setAttribute("visible", true);
+  //document.querySelector('#cursor').setAttribute("visible", true);
 }
 
 // Simple function to toggle minimenu
@@ -117,7 +117,7 @@ function togglemini(enabled) {
   toggle.setAttribute('animation__position', 'property: position; from: 0 ' + prevtoggly + ' ' + prevz + '; to: 0 ' + toggly  + ' ' + z + '; dur: 1000');
   toggle.setAttribute('animation__rotation', 'property: rotation; from: ' + prevrotx + ' 0 0; to: ' + rotx + ' 0 0; dur: 1000');
   // Cursor should only be visible if mini menu is visible
-  document.querySelector('#cursor').setAttribute("visible", enabled);
+  //document.querySelector('#cursor').setAttribute("visible", enabled);
   minimenu = enabled;
 }
 
@@ -244,7 +244,7 @@ AFRAME.registerComponent('menu-item', {
         this.setAttribute('animation__position', 'property: position; from: ' + postr + '; to: 0 0 0; dur: 1000');
         this.setAttribute('animation__scale', 'property: scale; from: 7.75 7.75 7.75; to: 1 1 1; dur: 1000');
         
-        document.querySelector('#cursor').setAttribute("visible", true);
+        //document.querySelector('#cursor').setAttribute("visible", true);
         
         this.active = true;
         this.surround = false;
