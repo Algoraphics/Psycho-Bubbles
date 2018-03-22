@@ -177,6 +177,7 @@ AFRAME.registerComponent('menu-item', {
     this.el.addEventListener('mouseenter', function () {
       if (this.active) {
         this.setAttribute('scale', '1.2 1.2 1.2');
+        document.querySelector('#cursor').emit('menuleave');
         document.querySelector('#tick').play();
       }
     });
