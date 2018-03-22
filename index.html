@@ -227,11 +227,9 @@
         
         <a-cursor id="cursor" material="color: gray" position="0 0 0.5"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: scale; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          animation__click2="property: material.opacity; startEvents: mouseleave; from: 0; to: 1; dur: 1"
-          animation__fusing2="property: material.opacity; startEvents: mouseleave; from: 0; to: 1; dur: 1"
+          animation__fusing="property: scale; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; easing: linear; dur: 1500"
+          animation__fade="property: material.opacity; startEvents: menuleave; from: 1; to: 0; dur: 5000"
           animation__defusing="property: scale; startEvents: mouseleave; from: 0.1 0.1 0.1; to: 1 1 1; dur: 1"
-          animation__defusing2="property: material.opacity; startEvents: mouseleave; from: 1; to: 0; dur: 10000"
           animation__click3="property: material.opacity; startEvents: mousedown; from: 1; to: 0; dur: 5000"
           event-set__1="_event: mouseenter; color: #f441a6"
           event-set__2="_event: mouseleave; color: gray;"
