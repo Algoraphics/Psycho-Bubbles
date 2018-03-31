@@ -663,6 +663,7 @@ void main() {
   fragmentShader: randomripple + electricfrag
 });
 
+// see https://shaderfrog.com/app/view/2141
 AFRAME.registerShader('gasplanet-shader', {
   schema: {
     timeMsec: {type: 'time', is: 'uniform'},
@@ -874,6 +875,11 @@ void main(void){
 `
 });
 
+/*
+  Similar basic principle to Opal, but with an entirely new source pattern for
+  self-similarity, based on rectangles instead of circles. Creates a more
+  "geometric" pattern.
+*/
 AFRAME.registerShader('fractal-bismuth-shader', {
   schema: {
     timeMsec: {type: 'time', is: 'uniform'},
