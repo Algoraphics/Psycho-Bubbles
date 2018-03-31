@@ -4,7 +4,7 @@
 
 This project is basically a showcase of shaders I've made or messed around with while playing with [A-Frame](https://aframe.io). 
 
-It is built to show off the full capabilities of shaders in VR, and so will probably melt any mobile device (not really, but the framerate will be awful). If you'd like to see a mobile visualizer, try [Opal](https://opal.glitch.me/).
+It is built to show off the full capabilities of shaders in VR, so requires a bit more firepower than, say, [Opal](https://opal.glitch.me/). However it still works on a number of devices. Give it a try!
 
 You can select one of the bubbles for a cool visualization (more info can be found in each bubble) or simply enjoy the view from the menu.
 
@@ -25,9 +25,14 @@ You can select one of the bubbles for a cool visualization (more info can be fou
 1. Open a browser which [supports A-Frame.](https://aframe.io/docs/0.7.0/introduction/vr-headsets-and-webvr-browsers.html#which-browsers-does-a-frame-support)
 2. Load up [Psycho-Bubbles](https://psycho-bubbles.glitch.me/).
 
+*Mobile (and optionally, VR):*
+1. Open a browser which [supports A-Frame.](https://aframe.io/docs/0.7.0/introduction/vr-headsets-and-webvr-browsers.html#which-browsers-does-a-frame-support)
+2. Load up [Psycho-Bubbles](https://psycho-bubbles.glitch.me/).
+3. If you have a VR headset, hit the VR button in the bottom right corner and slot the phone in your headset.
+
 **Where can it run?**
 
-Theoretically, it should work on Rift, Windows MR, etc, as long as you follow [A-Frame conventions for getting WebVR to run.](https://aframe.io/docs/0.7.0/introduction/vr-headsets-and-webvr-browsers.html)
+It can run on any PC or mobile device with a serviceable graphics card. A list of tested devices can be found below. It has been tested in VR with a Vive, and theoretically it should work on Rift, Windows MR, etc, as long as you follow [A-Frame conventions for getting WebVR to run.](https://aframe.io/docs/0.7.0/introduction/vr-headsets-and-webvr-browsers.html)
 
 List of devices on which this is confirmed to work:
 - Vive running with Firefox 10 on Windows 10
@@ -36,16 +41,20 @@ List of devices on which this is confirmed to work:
 - Google Chrome on iOS
 - Safari on iOS
 - Firefox 10 on Windows 10
+- Firefox 10 on Ubuntu
+- Iphone 8
 
 **Troubleshooting/FAQ:**
 
 - Refreshing the page will fix many problems:
   - Buttons out of place/missing, not responding to click/touch/hover, etc.
   - Seems like not everything has loaded (sky is white, main menu is missing, etc.)
+- I selected the pink robot button and nothing happened!
+  - You have to actually click or tap that button, it doesn't work if you hold the cursor over it like other buttons. This is because it actually opens a separate link, which is banned in most browsers for hover cursors. Also, [here's the link.](https://github.com/Algoraphics/Psycho-Bubbles)
 - I'm in a colorful bubble and I don't see any buttons! What do?
-  - Look down. The info menu might be minimized, and the toggle button is below you.
+  - Look down. The info menu might be minimized, and the toggle button is below you. If not, try refreshing.
 - The screen is just...white.
-  - Are you on a mobile device, or computer with a weak graphics card? You may not be able to run this page.
+  - Are you on a mobile device, or computer with a weak graphics card? You may not be able to run this page. If not, it might be a bug. Email me! (see above)
   - If you're unsure, check if your browser [supports A-Frame.](https://aframe.io/docs/0.7.0/introduction/vr-headsets-and-webvr-browsers.html#which-browsers-does-a-frame-support)
 - Vive issues:
   - Cannot start SteamVR (app running):

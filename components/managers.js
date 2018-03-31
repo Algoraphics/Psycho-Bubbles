@@ -1,6 +1,6 @@
 /* global AFRAME, THREE, beat, bind, Uint8Array, isMobile, checkHeadsetConnected */
 
-var debug = true;
+var debug = false;
 var minimenu = false;
 
 /*
