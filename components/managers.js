@@ -319,112 +319,6 @@ AFRAME.registerComponent('music-manager', {
 });
 
 /*
-  Will move an object regularly to keep it aligned with the camera. Designed with repeating layouts of
-  objects in mind, so the camera will appear to move through the group of objects without ever reaching
-  the end.
-  
-  Works bi-directionally but currently will only stop following or delete itself if the camera passes
-  a threshold in the -z direction.
-  
-  Math is somewhat arbitrary but there's a logic to it. Divides entity into 5 slices. 
-  Basically, the goal is to keep the camera in the center slice. Ensures there are always 2/5th of the 
-  total object both ahead and behind. Does require that following object has distances between components
-  in multiples of 5, or movement jumps will be obvious.
-*/
-AFRAME.registerComponent('followcamera', {
-  schema: {
-    length: {default: 2},
-    stopfollow: {default: NaN}, // Location at which to stop following
-    delete: {default: NaN}, // Location at which to remove the asset
-  },
-  init: function () {
-    this.startpos = this.el.getAttribute('position');
-    this.stopfollow = false;
-    
-    var position = this.el.getAttribute('position');
-    var centerfront = position.z - 3 * this.data.length / 5;
-    var centerback = position.z - 2 * this.data.length / 5;
-  },
-  tick: function () {
-    var data = this.data;
-    
-    var cam = document.querySelector('#camera');
-    if (!cam) { return; }
-    
-    var campos = cam.getAttribute('position');
-    var position = this.el.getAttribute('position');
-    var centerlow = position.z - 3 * data.length / 5;
-    var centerhigh = position.z - 2 * data.length / 5;
-    if (!this.stopfollow) {
-      if (campos.z < centerlow) {
-        position.z -= data.length / 5;
-      }
-      else if (campos.z > centerhigh) {
-        position.z += data.length / 5;
-      }
-      this.el.setAttribute('position', position);
-    }
-    if (campos.z < data.stopfollow) {
-      this.stopfollow = true;
-    }
-    if (!isNaN(data.delete)) {
-      if (campos.z < data.delete) {
-        // Maybe factor into delete function?
-        //console.log(this.el.classList);
-        if (this.el.classList.contains('slowdelete')) {
-          // Add a more complex delete function here, probly just loop through the children and delete one per x tick
-        }
-        this.el.parentNode.removeChild(this.el); 
-      }
-    }
-  }
-});
-
-/*
-  Component to move an entity in a given direction at a given speed.
-  Accepts emitter events which can update the movement speed.
-*/
-AFRAME.registerComponent('slide', {
-  schema: {
-    axis: {default: 'z'},
-    speed: {default: -12},
-  },
-  init: function () {
-    this.el.axis = this.data.axis;
-    this.el.speed = this.data.speed;
-    this.el.setAttribute('class', 'slide');
-    this.el.addEventListener('speed', function (event) {
-      this.speed = event.detail;
-    });
-  },
-  tick: function (time, timeDelta) {
-    var el = this.el;
-    var data = this.data;
-    var xdelta = 0; var ydelta = 0; var zdelta = 0;
-    switch (this.el.axis) {
-      case 'x': {
-        xdelta = this.el.speed * (timeDelta / 1000);
-      }
-      case 'y': {
-        ydelta = this.el.speed * (timeDelta / 1000);
-      }
-      case 'z': {
-        zdelta = this.el.speed * (timeDelta / 1000);
-      }
-    }
-
-    var positionTmp = this.positionTmp = this.positionTmp || {x: 0, y: 0, z: 0};
-    var position = el.getAttribute('position');
-
-    positionTmp.x = position.x - xdelta;
-    positionTmp.y = position.y + ydelta;
-    positionTmp.z = position.z - zdelta;
-    
-    el.setAttribute('position', positionTmp);
-  }
-});
-
-/*
   Manage camera state. Accept input signals from menu to determine whether camera should really move.
   Configurable start, stop, and location at which it will slowly rise up.
 */
@@ -445,13 +339,14 @@ AFRAME.registerComponent('camera-manager', {
       if (checkHeadsetConnected()) {
         el.setAttribute('look-controls','');
         el.setAttribute('position', '0 1.6 0');
-        document.querySelector('#click-instruction').setAttribute('visible', 'false');
+        //document.querySelector('#click-instruction').setAttribute('visible', 'false');
         if (isMobile()) {
           el.setAttribute('position', '0 2 0');
         }
       }
       else {
         el.setAttribute('my-look-controls', '');
+        el.setAttribute('position', '0 2 0');
       }
     }
     

@@ -86,50 +86,6 @@ function addBeatListener(comp, startclass) {
   });
 }
 
-// TODO long-term, these rng elements to not need to be specific to "buildings"
-
-/*
-  Helper function for rng-building-arc, recursively add buildings to a base with some arc
-*/
-function arcBuildings(building, buildingAttrs, angle, dist, scale, axis, depth) {
-  if (depth > 1) {
-    var xoffset = 0; var yoffset = -10; var zoffset = 0;
-    var xangle = 0; var yangle = 0;
-    //var angle = 0;
-    // Calibrated for a 1x1 block
-    if (axis == 'y') {
-      var xoffset = 0;//0.05 * (angle / 5);
-      var yoffset = 6 + (0.1 * (angle / 5));
-      yangle = angle;
-    }
-    // Calibrated for a 1x2 block
-    else if (axis == 'x') {
-      var xoffset = dist - 0.1 * (angle / 5);
-      var yoffset = 0;
-      var zoffset = 0.25 * (angle / 5);
-      xangle = angle;
-    }
-    
-    //var animAttrs = ' dir: alternate; loop: true; easing: easeInOutExpo; dur: ' + dur;
-    var mover = document.createElement('a-entity');
-    mover.setAttribute('animation__move', 'property: position; from: 0 0 0; to: ' + -xoffset + ' ' + yoffset + ' ' + zoffset + ';'
-                       + animAttrs + 'easing: easeInOutExpo; startEvents: started; dur: ' + (dur / 2));
-    mover.setAttribute('class', 'arc');
-
-    var nextbuilding = document.createElement('a-entity');
-    nextbuilding.setAttribute('building', buildingAttrs);
-    //nextbuilding.setAttribute('position', "0 0 0");
-    nextbuilding.setAttribute('scale', scale + " " + scale + " " + scale);
-    nextbuilding.setAttribute('animation__turn', 'property: rotation; from: 0 0 0; to: 0 ' + xangle + ' ' + yangle + ';'
-                              + animAttrs + 'easing: easeInOutExpo; startEvents: started; dur: ' + (dur / 2));
-    nextbuilding.setAttribute('class', 'arc');
-
-    arcBuildings(nextbuilding, buildingAttrs, angle, dist, scale, axis, depth - 1);
-    mover.appendChild(nextbuilding);
-    building.appendChild(mover);
-  }
-}
-
 /* 
   Generate buildings which do not use shaders. These are made using
   individual plane geometries for windows. They use more GPU resources,
