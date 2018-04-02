@@ -152,6 +152,7 @@ AFRAME.registerComponent('menu-item', {
     this.el.tag = this.data.tag;
     this.el.mobile = isMobile();
     this.el.loaded = false;
+    this.el.surround = false;
     
     // Get parent entity (layout element) for actual position
     var pos = this.el.parentEl.getAttribute('position');
@@ -167,7 +168,6 @@ AFRAME.registerComponent('menu-item', {
     // Click event is used by fuse
     this.el.addEventListener('click', function () {
       if (this.active) {
-        
         document.querySelector('#click').play();
         // Call action function, pass self in for access to variables
         this.action(this);
@@ -237,18 +237,24 @@ AFRAME.registerComponent('menu-item', {
     });
     // Main button was hit, reset to main menu
     this.el.addEventListener('main', function () {
-      // Inactive element is the one surrounding the user. These calls should only happen once, on that element.
+      // Surround element is the one surrounding the user. These calls should only happen once, on that element.
       if (this.surround) {
         togglemini(false);
         var pos = this.pos
         var postr = -pos.x + ' ' + (-pos.y + 2) + ' ' + 30; // zpos is simply scaled cam distance from menu
         this.setAttribute('animation__position', 'property: position; from: ' + postr + '; to: 0 0 0; dur: 1000');
         this.setAttribute('animation__scale', 'property: scale; from: 7.75 7.75 7.75; to: 1 1 1; dur: 1000');
-        
-        //document.querySelector('#cursor').setAttribute("visible", true);
+        this.setAttribute('animation__timer', 'property: opacity; from: 1; to: 1; dur: 1000');
         
         this.active = true;
         this.surround = false;
+      }
+    });
+    // At the moment, this is only called once
+    this.el.addEventListener('animationcomplete', function (event) {
+      //console.log("Detail was " + event.detail.name);
+      if (event.detail.name == "animation__timer") {
+        //this.active = true;
       }
     });
   }
@@ -338,15 +344,13 @@ AFRAME.registerComponent('camera-manager', {
     if (el.getAttribute('id') == 'camera') {
       if (checkHeadsetConnected()) {
         el.setAttribute('look-controls','');
-        el.setAttribute('position', '0 1.6 0');
-        //document.querySelector('#click-instruction').setAttribute('visible', 'false');
         if (isMobile()) {
-          el.setAttribute('position', '0 2 0');
+          el.setAttribute('position', '0 1.5 0');
         }
       }
       else {
         el.setAttribute('my-look-controls', '');
-        el.setAttribute('position', '0 2 0');
+        el.setAttribute('position', '0 1.5 0');
       }
     }
     

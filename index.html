@@ -4,7 +4,7 @@
     <title>Bubbles!</title>
     <meta name="description" content="Road.">
     <!-- Included components -->
-    <script src="https://rawgit.com/aframevr/aframe/4d90df5/dist/aframe-master.min.js"></script>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
@@ -12,7 +12,6 @@
     <script src="components/includes.js"></script>
     <!-- My files -->
     <script src="components/colors.js"></script>
-    <script src="components/entity-generator.js"></script>
     <script src="components/managers.js"></script>
     <script src="components/rng.js"></script>
     
@@ -30,7 +29,7 @@
     <script id="opal-link" type="text/html">
       <a-entity class="link" id="opal-fractal"
         rng-fractal-shader="width: 8; gem: opal; skip: 9.05; resolution: 0 0 0 1;"
-        menu-item="action: surround; infotext: Welcome to Opal!\n
+        menu-item="tag: opal; action: surround; infotext: Welcome to Opal!\n
           Recommended activity: hit 'toggle info' below,
           put on some music, sit back, and enjoy the show.\n
           Keyboard controls (optional, adds variety):\n
@@ -51,7 +50,7 @@
     <script id="bismuth-link" type="text/html">
       <a-entity class="link" id="bismuth-fractal"
         rng-fractal-shader="width: 8; gem: bismuth; skip: 21.06; resolution: 0 0 0 1"
-        menu-item="action: surround; infotext: Welcome to Bismuth!\n
+        menu-item="tag: bismuth; action: surround; infotext: Welcome to Bismuth!\n
           Recommended activity: hit 'toggle info' below,
           put on some music, sit back, and enjoy the show.\n
           Keyboard controls (optional, adds variety):\n
@@ -206,7 +205,7 @@
                           brightness: 0.75; resolution: 6.0; color1: #502500; color2: #0000FF; color3: #00ddff"></a-entity>
       
       <!-- Main menu -->
-      <a-entity id="menu" position="0 2 -1.5">
+      <a-entity id="menu" position="0 1.5 -1.5">
         <a-entity id="menu-layout" layout="type: circle; radius: 12" scale="0.05 0.05 0.05">
           <a-entity template="src: #opal-link"></a-entity>
           <a-entity template="src: #about-link" data-thumb="#exbot"></a-entity>
@@ -219,7 +218,7 @@
       
       
       <!-- Camera and children -->
-      <a-entity id="camera" camera="userHeight: 0.4; near: 0.25" position="0 0.1 -1" look-controls
+      <a-entity id="camera" camera="userHeight: 0.4; near: 0.25" position="0 0 0" look-controls
                 camera-manager="speed: 12; stop: -2800; id: main" rotation="0 0 0">
         <a-cursor id="cursor" material="color: gray" position="0 0 0.5"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
